@@ -1,37 +1,52 @@
-let periferico = [], estado = [];
-let contadorPerifericos, contadorDanados, contadorBuenos;
-let porcentajeDanados;
+function obtenerPorcentajeDanos() {
+    let totalPerifericos = parseInt(prompt("Ingrese el número total de periféricos:"));
 
-contadorPerifericos = 0;
-contadorDanados = 0;
-contadorBuenos = 0;
+    while (isNaN(totalPerifericos) || totalPerifericos <= 0) {
+        const opcion = prompt(
+            "Cantidad inválida de periféricos. ¿Desea reingresar el dato? (S = sí / N = no)"
+        );
 
-let cantidadPerifericos = prompt("Ingrese la cantidad de periféricos: ");
+        if (opcion && opcion.toUpperCase() === "N") {
+            return; // Salir del programa
+        }
 
-for (let i = 0; i < cantidadPerifericos; i++) {
-    periferico[i] = prompt("Ingrese el nombre del periférico: " + (i + 1) + " : ");
-    estado[i] = prompt("Ingrese el estado del periférico: " + (i + 1) + "(dañado/bueno): ");
-    
-    contadorPerifericos++;
-    
-    if (estado[i] === "dañado") {
-        contadorDanados++;
-    } else {
-        contadorBuenos++;
+        totalPerifericos = parseInt(prompt("Ingrese el número total de periféricos:"));
     }
-}
 
-porcentajeDanados = (contadorDanados * 100) / contadorPerifericos;
+    let perifericosDanados = 0;
+    let perifericosFuncionandoBien = [];
+    let perifericosDanadosLista = [];
 
-console.log("El porcentaje de periféricos dañados es: " + porcentajeDanados + "%");
-console.log("Los periféricos que están funcionando bien son: ");
+    for (let i = 1; i <= totalPerifericos; i++) {
+        let nombrePeriferico = prompt("Ingrese el nombre del periférico " + i + ":");
+        let estado = prompt("Seleccione el estado del periférico " + nombrePeriferico + ": (B = bien / D = dañado)");
 
-if (contadorBuenos === 0) {
-    console.log("No hay periféricos funcionando bien.");
-} else {
-    for (let i = 0; i < cantidadPerifericos; i++) {
-        if (estado[i] === "bueno") {
-            console.log(periferico[i]);
+        while (estado.toUpperCase() !== "B" && estado.toUpperCase() !== "D") {
+            estado = prompt("Valor inválido. Seleccione el estado del periférico " + nombrePeriferico + ": (B = bien / D = dañado)");
+        }
+
+        if (estado.toUpperCase() === "D") {
+            perifericosDanados++;
+            perifericosDanadosLista.push(nombrePeriferico);
+        } else {
+            perifericosFuncionandoBien.push(nombrePeriferico);
         }
     }
+
+    let porcentajeDanos = (perifericosDanados / totalPerifericos) * 100;
+
+    let resultadosDiv = document.getElementById("resultados");
+    resultadosDiv.innerHTML = "<span style='color: #2a68b9;'>Cantidad total de periféricos: </span><span style='color: white;'>" + totalPerifericos + "</span><br>";
+    resultadosDiv.innerHTML += "<span style='color: #2a68b9;'>Porcentaje de periféricos dañados: </span><span style='color: white;'>" + porcentajeDanos.toFixed(2) + "%</span><br>";
+
+    if (perifericosDanados > 0) {
+        resultadosDiv.innerHTML += "<span style='color: #2a68b9;'>Periféricos funcionando correctamente: </span><span style='color: white;'>" + perifericosFuncionandoBien.join(", ").toUpperCase() + "</span><br>";
+        resultadosDiv.innerHTML += "<span style='color: #2a68b9;'>Periféricos dañados: </span><span style='color: white;'>" + perifericosDanadosLista.join(", ").toUpperCase() + "</span>";
+    } else {
+        resultadosDiv.innerHTML += "<span style='color: #2a68b9;'>No hay periféricos dañados.</span>";
+    }
+
+    resultadosDiv.style.color = "white";
 }
+
+document.getElementById("calcularBtn2").addEventListener("click", obtenerPorcentajeDanos);

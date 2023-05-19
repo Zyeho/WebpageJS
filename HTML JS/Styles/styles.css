@@ -83,3 +83,43 @@ ol.menu {
     padding: 5px;
     color: #ffffff;
 }
+
+.styled-tableX {
+    font-family: "Montserrat", serif;
+    width: 70%;
+    height: 250px;
+    border: 2px solid #b3adad;
+    border-collapse: collapse;
+    padding: 10px;
+    box-shadow: 0 0 5px #2a68b9;
+}
+
+.styled-tableX th {
+    border: 2px solid #b3adad;
+    padding: 5px;
+    background: #2a68b9;
+    color: #ffffff;
+}
+
+.styled-tableX td {
+    border: 2px solid #b3adad;
+    text-align: center;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.containerX {
+    padding: 10px;
+    text-align: left;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+}
+
+.button-container {
+    display: inline-block;
+    margin: auto;
+}
+
+#resultados {
+    padding: 10px;
+    margin-top: 10px;
+}
