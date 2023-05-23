@@ -1,3 +1,4 @@
+//Exercise A
 document.getElementById('calcularBtn3').addEventListener('click', function() {
     let cantidadNumeros = parseInt(prompt("Ingresa la cantidad de números a ingresar:"));
 
@@ -35,6 +36,7 @@ document.getElementById('calcularBtn3').addEventListener('click', function() {
         }, 0) / imparesInferiores750.length;
     }
 
+//Exercise B
     let numerosEnRango120860 = numeros.filter(function(numero) {
         return numero > 120 && numero <= 860;
     });
@@ -43,6 +45,7 @@ document.getElementById('calcularBtn3').addEventListener('click', function() {
         return a * b;
     }) : "No hay números en el rango (120, 860] para multiplicar.";
 
+//Exercise C
     let menores75MayoresIguales86 = numeros.filter(function(numero) {
         return numero < 75 || numero >= 86;
     });
@@ -51,6 +54,7 @@ document.getElementById('calcularBtn3').addEventListener('click', function() {
         return a + b;
     }, 0);
 
+//Exercise D
     let numerosPares = numeros.filter(function(numero) {
         return numero % 2 === 0;
     });
