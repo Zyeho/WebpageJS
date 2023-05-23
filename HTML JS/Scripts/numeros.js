@@ -72,6 +72,7 @@ function getOrdinal(number) {
     const suffixes = ["º", "º", "º", "º", "º", "º", "º", "º", "º", "º"];
     const lastDigit = number % 10;
     const lastTwoDigits = number % 100;
+
     if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
         return number + "º";
     }
